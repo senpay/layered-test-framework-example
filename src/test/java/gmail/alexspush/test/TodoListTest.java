@@ -16,13 +16,16 @@ public class TodoListTest {
     //I want my test scenarios to dictate the steps API I need to implement.
     IGenericSteps genericSteps;
     ITodoCRUDSteps todoCRUDSteps;
+    ITodoFilterSteps todoFilterSteps;
+    ITodoValidationSteps todoValidationSteps;
+    ITodoCompositeSteps todoCompositeSteps;
 
     @Before
     public void setUp() {
         //Here I am not specifying which url to open - staging/production/local.
         //In general case, test should know nothing about it
         //There're some prominent exceptions, but they are out of scope of this example
-        genericSteps.openApplicationUrl();
+        genericSteps.openApplication();
     }
 
     /**
@@ -50,7 +53,7 @@ public class TodoListTest {
         //Here we're making assumption that there were no such item before.
         //It can be easily addressed if we generate new name for each test
         //I will not add this implementation here as this is pretty straight-forward thing to do
-        todoCRUDSteps.todoItemIsPresent(todoItemName);
+        todoValidationSteps.todoItemIsPresent(todoItemName);
     }
 
     /**
@@ -75,7 +78,7 @@ public class TodoListTest {
         //Given
         final String todoItemName = "mySuperNiceAndExtraRandomName";
         //would be nice to reference prev. test here, wouldn't it?
-        todoCRUDSteps.userCreatedTodoItem(todoItemName);
+        todoCompositeSteps.userCreatedTodoItem(todoItemName);
 
         //When
         todoCRUDSteps.userMarksItemAsComplete(todoItemName);
@@ -84,7 +87,7 @@ public class TodoListTest {
         //Here we're making assumption that there were no such item before.
         //It can be easily addressed if we generate new name for each test
         //I will not add this implementation here as this is pretty straight-forward thing to do
-        todoCRUDSteps.todoItemMarkedCompeted(todoItemName);
+        todoValidationSteps.todoItemMarkedCompeted(todoItemName);
     }
 
     /**
@@ -96,14 +99,14 @@ public class TodoListTest {
     public void shouldBeAbleToUnMarkTodoItemAsCompleted() {
         //Given
         final String todoItemName = "mySuperNiceAndExtraRandomName";
-        todoCRUDSteps.userCreatedTodoItem(todoItemName);
+        todoCompositeSteps.userCreatedTodoItem(todoItemName);
         todoCRUDSteps.userCompletedTodoItem(todoItemName);
 
         //When
         todoCRUDSteps.userUnMarksItemAsComplete(todoItemName);
 
         //Then
-        todoCRUDSteps.todoItemIsNotMarkedCompeted(todoItemName);
+        todoValidationSteps.todoItemIsNotMarkedCompeted(todoItemName);
     }
 
 
@@ -116,13 +119,13 @@ public class TodoListTest {
     public void shouldBeAbleToDeleteTodoItem() {
         //Given
         final String todoItemName = "mySuperNiceAndUltraRandomName";
-        todoCRUDSteps.userCreatedTodoItem(todoItemName);
+        todoCompositeSteps.userCreatedTodoItem(todoItemName);
 
         //When
         todoCRUDSteps.userDeletesItem(todoItemName);
 
         //Then
-        todoCRUDSteps.todoItemIsNotPresent(todoItemName);
+        todoValidationSteps.todoItemIsNotPresent(todoItemName);
     }
 
     /**
@@ -144,14 +147,14 @@ public class TodoListTest {
         //Given
         final int numberOfItemsCreated = 6;
         final int numberOfItemsCompleted = 4;
-        todoCRUDSteps.userCreatedNumberOfItems(numberOfItemsCreated);
-        todoCRUDSteps.userCompletedNumberOfItems(numberOfItemsCompleted);
+        todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
+        todoCompositeSteps.userCompletedNumberOfItems(numberOfItemsCompleted);
 
         //When
-        todoCRUDSteps.selectsActiveFilter();
+        todoFilterSteps.selectsActiveFilter();
 
         //Then
-        todoCRUDSteps.userSeesOnlyActiveItems();
+        todoValidationSteps.userSeesOnlyActiveItems();
 
     }
 
@@ -164,14 +167,14 @@ public class TodoListTest {
         //Given
         final int numberOfItemsCreated = 5;
         final int numberOfItemsCompleted = 2;
-        todoCRUDSteps.userCreatedNumberOfItems(numberOfItemsCreated);
-        todoCRUDSteps.userCompletedNumberOfItems(numberOfItemsCompleted);
+        todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
+        todoCompositeSteps.userCompletedNumberOfItems(numberOfItemsCompleted);
 
         //When
-        todoCRUDSteps.selectsCompletedFilter();
+        todoFilterSteps.selectsCompletedFilter();
 
         //Then
-        todoCRUDSteps.userSeesOnlyCompletedItems();
+        todoValidationSteps.userSeesOnlyCompletedItems();
     }
 
     /**
@@ -183,13 +186,13 @@ public class TodoListTest {
         //Given
         final int numberOfItemsCreated = 5;
         final int numberOfItemsCompleted = 2;
-        todoCRUDSteps.userCreatedNumberOfItems(numberOfItemsCreated);
-        todoCRUDSteps.userCompletedNumberOfItems(numberOfItemsCompleted);
+        todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
+        todoCompositeSteps.userCompletedNumberOfItems(numberOfItemsCompleted);
 
         //When
-        todoCRUDSteps.selectsAllFilter();
+        todoFilterSteps.selectsAllFilter();
 
         //Then
-        todoCRUDSteps.userSeeAllCreatedItems();
+        todoValidationSteps.userSeeAllCreatedItems();
     }
 }
