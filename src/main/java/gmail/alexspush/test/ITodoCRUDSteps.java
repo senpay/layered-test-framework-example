@@ -15,7 +15,39 @@ package gmail.alexspush.test;
  */
 public interface ITodoCRUDSteps {
 
-    void enterTodoName(String todoName);
+    void userEntersTodoName(String todoName);
 
-    void todoPresentInAList(String todoName);
+    void userCreatedTodoItem(String todoItemName);
+
+    void userMarksItemAsComplete(String todoItemName);
+
+    void todoItemIsPresent(String todoName);
+
+    void todoItemMarkedCompeted(String todoName);
+
+    void userDeletesItem(String todoItemName);
+
+    void todoItemIsNotPresent(String todoItemName);
+
+    void userCompletedTodoItem(String todoItemName);
+
+    void userUnMarksItemAsComplete(String todoItemName);
+
+    void todoItemIsNotMarkedCompeted(String todoItemName);
+
+    void userCreatedNumberOfItems(int numberOfItemsCreated);
+
+    void userCompletedNumberOfItems(int numberOfItemsCompleted);
+
+    void selectsActiveFilter();
+
+    void userSeesOnlyActiveItems();
+
+    void userSeesOnlyCompletedItems();
+
+    void selectsCompletedFilter();
+
+    void selectsAllFilter();
+
+    void userSeeAllCreatedItems();
 }
