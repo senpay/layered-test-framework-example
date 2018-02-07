@@ -179,7 +179,7 @@ public class TodoListTest {
      * Same as previous.
      */
     @Test
-    public void shouldShowAlltemsIfNoFilterApplied() {
+    public void shouldShowAllItemsIfNoFilterApplied() {
         //Given
         final int numberOfItemsCreated = 5;
         final int numberOfItemsCompleted = 2;
@@ -192,6 +192,4 @@ public class TodoListTest {
         //Then
         todoCRUDSteps.userSeeAllCreatedItems();
     }
-
-
 }
