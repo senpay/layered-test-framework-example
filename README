@@ -1,0 +1,32 @@
+Application under test can be found here: http://todomvc.com/examples/angularjs/#/
+My brief exploratory testing lead me to these checklist and thoughts:
+
+Area: Todos CRUD
+
+Things to Check:
+1 Create item (Basic scenario, UI-level case)
+1.1 Create item with the same name (Case is not valid. There's no validation for that - nothing to check really.)
+1.2 Create item with empty/not valid/malicious name (While it would be nice thing to test manually, from test automation stand point I
+would expect this to be filtered on service or repository level, so either integration or unit test.)
+2 Mark item complete (Basic scenario, UI-level case)
+2.1 Un-mark item complete (Basic scenario, UI-level case)
+3 Delete item (Basic scenario, UI-level case)
+3.1 Delete item when there're multiple items with the same name (Basically what we check there is that some other field (not name) is
+used for delete query generation (assuming it is stored in DB). Thus it is probably great scenario for integration or even unit test,
+depending on the realisation)
+
+Area: Filtering
+4 All (Basic scenario, UI-level case)
+5 Active (Basic scenario, UI-level case)
+6 Completed (Basic scenario, UI-level case)
+
+Area: Bulk action
+7 Delete several completed items (Basic scenario, UI-level case)
+7.1 Delete one completed item (Deleting one time or 100 items should be just slightly different sql-queries generated (assuming DB is used),
+so I would rather not add this as a separate scenario)
+8 Select all items (Depending on the UI implementation may be a good candidate for JS unit-test)
+
+Area: Other
+9 Valid item list shown (Nothing special. May be combined nicely with some other scenario. Pretty minor thing anyway so I would rather not
+add a separate UI case for that)
+

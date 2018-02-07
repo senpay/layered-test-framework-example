@@ -191,8 +191,6 @@ public class TodoListTest {
 
         //Then
         todoCRUDSteps.userSeeAllCreatedItems();
-
-
     }
 
 
