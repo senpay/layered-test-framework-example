@@ -1,5 +1,6 @@
 package gmail.alexspush.service;
 
+import gmail.alexspush.driver.SelenideApplicationDriver;
 import gmail.alexspush.test.IGenericSteps;
 
 /**
@@ -9,7 +10,9 @@ public class GenericStepsImpl implements IGenericSteps {
 
     //Some application driver to be here
     //At this stage it is not important which f*ckium it is.
-    IApplicationDriver applicationDriver;
+    //In ideal world those classes would be instantiated through setters using IoC container or
+    //any other smart way. Here I just will new them.
+    private IApplicationDriver applicationDriver = new SelenideApplicationDriver();
 
     /**
      * The name is deliberately vague "openApplication"

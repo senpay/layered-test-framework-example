@@ -1,5 +1,8 @@
 package gmail.alexspush.test;
 
+import gmail.alexspush.service.GenericStepsImpl;
+import gmail.alexspush.service.TodoCRUDStepsImpl;
+import gmail.alexspush.service.TodoValidationStepsImpl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,11 +17,13 @@ public class TodoListTest {
     //First (and arguable) is that I want my test to be decoupled from concrete steps implementation
     //Second (undoubtable for me) is that I don't want to think about implementation just yet.
     //I want my test scenarios to dictate the steps API I need to implement.
-    IGenericSteps genericSteps;
-    ITodoCRUDSteps todoCRUDSteps;
-    ITodoFilterSteps todoFilterSteps;
-    ITodoValidationSteps todoValidationSteps;
-    ITodoCompositeSteps todoCompositeSteps;
+    //In ideal world those classes would be instantiated through setters using IoC container or
+    //any other smart way. Here I just will new them.
+    private IGenericSteps genericSteps = new GenericStepsImpl();
+    private ITodoCRUDSteps todoCRUDSteps = new TodoCRUDStepsImpl();
+    private ITodoFilterSteps todoFilterSteps;
+    private ITodoValidationSteps todoValidationSteps = new TodoValidationStepsImpl();
+    private ITodoCompositeSteps todoCompositeSteps;
 
     @Before
     public void setUp() {
