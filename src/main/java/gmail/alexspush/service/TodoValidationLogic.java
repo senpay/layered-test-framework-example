@@ -10,7 +10,7 @@ import gmail.alexspush.page.SelenideMainPage;
 public class TodoValidationLogic {
 
     //TODO: make this PoM a singletone
-    private IMainPage mainPage = new SelenideMainPage();
+    private IMainPage mainPage = SelenideMainPage.INSTANCE;;
 
     boolean isItemPresentInAList(final String todoName) {
         //My exploratory testing shown there was no pagination

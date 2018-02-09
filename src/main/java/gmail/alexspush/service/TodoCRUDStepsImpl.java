@@ -8,7 +8,7 @@ import gmail.alexspush.test.ITodoCRUDSteps;
  */
 public class TodoCRUDStepsImpl implements ITodoCRUDSteps {
 
-    private IMainPage mainPage = new SelenideMainPage();
+    private IMainPage mainPage = SelenideMainPage.INSTANCE;
 
     @Override
     public void userEntersTodoName(String todoName) {

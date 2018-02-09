@@ -16,6 +16,8 @@ import static com.codeborne.selenide.Selenide.$$;
  */
 public class SelenideMainPage implements IMainPage {
 
+    public static final SelenideMainPage INSTANCE = new SelenideMainPage();
+
     private static final By NEW_FIELD_XPATH = By.xpath("//input[@id='new-todo']");
     private static final By TODO_ITEMS_XPATH = By.xpath("//div[@class='view']/label");
 
@@ -23,6 +25,12 @@ public class SelenideMainPage implements IMainPage {
     //Have no idea which of ids/classes are generated
     private static final String CHECKBOX_ITEM_XPATH_TEMPLATE = "//div[(@class='view') and (.//label[text()='%s'])]/input[@type='checkbox']";
     private static final String DELETE_ITEM_XPATH_TEMPLATE = "//div[(@class='view') and (.//label[text()='%s'])]/button[@class='destroy']";
+    private static final String TODO_ITEM_XPATH_TEMPLATE = "//div[@class='view']/label[text()='%s']";
+
+    //Brute force and not Thread-Local implementation of Singletone
+    //Lazy initialization not needed, will just use static field
+    private SelenideMainPage() {
+    }
 
     @Override
     public void setNewItemName(String todoName) {
@@ -67,15 +75,27 @@ public class SelenideMainPage implements IMainPage {
     }
 
     @Override
-    public void clickDeleteButtonForItem(String todoItemName) {
-        final String checkBoxXpathString  = String.format(DELETE_ITEM_XPATH_TEMPLATE, todoItemName);
-        By deleteButtonXpath = By.xpath(checkBoxXpathString);
-        $(deleteButtonXpath).click();
+    public void clickDeleteButtonForItem(final String todoItemName) {
+        hoverOverTodoItem(todoItemName);
+        clickDeleteButton(todoItemName);
     }
 
     private SelenideElement findCheckBoxForItem(final String todoItemName) {
         final String checkBoxXpathString  = String.format(CHECKBOX_ITEM_XPATH_TEMPLATE, todoItemName);
-        By checkBoxXpath = By.xpath(checkBoxXpathString);
+        final By checkBoxXpath = By.xpath(checkBoxXpathString);
         return $(checkBoxXpath);
     }
+
+    private void hoverOverTodoItem(final String todoItemName) {
+        final String todoItemXpathString  = String.format(TODO_ITEM_XPATH_TEMPLATE, todoItemName);
+        final By todoItemXpath = By.xpath(todoItemXpathString);
+        $(todoItemXpath).hover();
+    }
+
+    private void clickDeleteButton(final String todoItemName) {
+        final String deleteBoxXpathString  = String.format(DELETE_ITEM_XPATH_TEMPLATE, todoItemName);
+        final By deleteButtonXpath = By.xpath(deleteBoxXpathString);
+        $(deleteButtonXpath).click();
+    }
+
 }
