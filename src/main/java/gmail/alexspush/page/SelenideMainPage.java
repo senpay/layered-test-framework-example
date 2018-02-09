@@ -74,6 +74,16 @@ public class SelenideMainPage implements IMainPage {
         return findCheckBoxForItem(todoItemName).isSelected();
     }
 
+    /**
+     * It would be a good question about if we should have this logic (hover and then delete) in page
+     * or in steps.
+     *
+     * Probably conceptually it may be considered a candidate for steps, but I think
+     * there's a good point to have it in page
+     *
+     * For instance if this hover logic gets deleted it would be nice to avoid step changes
+     * @param todoItemName
+     */
     @Override
     public void clickDeleteButtonForItem(final String todoItemName) {
         hoverOverTodoItem(todoItemName);
