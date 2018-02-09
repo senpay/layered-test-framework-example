@@ -2,7 +2,9 @@ package gmail.alexspush.test;
 
 import gmail.alexspush.service.GenericStepsImpl;
 import gmail.alexspush.service.TodoCRUDStepsImpl;
+import gmail.alexspush.service.TodoCompositeStepsImpl;
 import gmail.alexspush.service.TodoValidationStepsImpl;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,7 +25,7 @@ public class TodoListTest {
     private ITodoCRUDSteps todoCRUDSteps = new TodoCRUDStepsImpl();
     private ITodoFilterSteps todoFilterSteps;
     private ITodoValidationSteps todoValidationSteps = new TodoValidationStepsImpl();
-    private ITodoCompositeSteps todoCompositeSteps;
+    private ITodoCompositeSteps todoCompositeSteps = new TodoCompositeStepsImpl();
 
     @Before
     public void setUp() {
@@ -31,6 +33,14 @@ public class TodoListTest {
         //In general case, test should know nothing about it
         //There're some prominent exceptions, but they are out of scope of this example
         genericSteps.openApplication();
+    }
+
+    @After
+    public void tearDown() {
+        //Here I am not specifying which url to open - staging/production/local.
+        //In general case, test should know nothing about it
+        //There're some prominent exceptions, but they are out of scope of this example
+        genericSteps.closeApplication();
     }
 
     /**
@@ -105,7 +115,7 @@ public class TodoListTest {
         //Given
         final String todoItemName = "mySuperNiceAndExtraRandomName";
         todoCompositeSteps.userCreatedTodoItem(todoItemName);
-        todoCRUDSteps.userCompletedTodoItem(todoItemName);
+        todoCompositeSteps.userCompletedTodoItem(todoItemName);
 
         //When
         todoCRUDSteps.userUnMarksItemAsComplete(todoItemName);

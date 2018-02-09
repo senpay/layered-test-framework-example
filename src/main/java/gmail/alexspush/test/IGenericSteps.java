@@ -7,4 +7,6 @@ package gmail.alexspush.test;
 public interface IGenericSteps {
 
     void openApplication();
+
+    void closeApplication();
 }

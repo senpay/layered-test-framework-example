@@ -6,4 +6,6 @@ package gmail.alexspush.service;
 public interface IApplicationDriver {
 
     void openApplication();
+
+    void closeApplication();
 }

@@ -24,4 +24,9 @@ public class GenericStepsImpl implements IGenericSteps {
         //In this class/method the reason why we have three layers is not visible (yet?)
         applicationDriver.openApplication();
     }
+
+    @Override
+    public void closeApplication() {
+        applicationDriver.closeApplication();
+    }
 }

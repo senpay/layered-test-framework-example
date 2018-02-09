@@ -18,21 +18,16 @@ public class TodoCRUDStepsImpl implements ITodoCRUDSteps {
 
     @Override
     public void userMarksItemAsComplete(String todoItemName) {
-
+        mainPage.selectCheckBoxForItem(todoItemName);
     }
 
     @Override
     public void userDeletesItem(String todoItemName) {
-
-    }
-
-    @Override
-    public void userCompletedTodoItem(String todoItemName) {
-
+        mainPage.clickDeleteButtonForItem(todoItemName);
     }
 
     @Override
     public void userUnMarksItemAsComplete(String todoItemName) {
-
+        mainPage.unSelectCheckBoxForItem(todoItemName);
     }
 }

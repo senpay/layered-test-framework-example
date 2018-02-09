@@ -4,6 +4,7 @@ package gmail.alexspush.driver;
 import com.codeborne.selenide.Configuration;
 import gmail.alexspush.service.IApplicationDriver;
 
+import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.open;
 
 /**
@@ -20,5 +21,10 @@ public class SelenideApplicationDriver implements IApplicationDriver {
         Configuration.browser = "chrome";
 
         open(APPLICATION_URL);
+    }
+
+    @Override
+    public void closeApplication() {
+        close();
     }
 }

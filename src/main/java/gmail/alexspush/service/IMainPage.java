@@ -12,4 +12,12 @@ public interface IMainPage {
     void hitEnter();
 
     List<String> getTodoItemNames();
+
+    void selectCheckBoxForItem(String todoItemName);
+
+    boolean isCheckBoxItemSelected(final String todoItemName);
+
+    void unSelectCheckBoxForItem(String todoItemName);
+
+    void clickDeleteButtonForItem(String todoItemName);
 }

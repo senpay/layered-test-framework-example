@@ -21,8 +21,6 @@ public interface ITodoCRUDSteps {
 
     void userDeletesItem(String todoItemName);
 
-    void userCompletedTodoItem(String todoItemName);
-
     void userUnMarksItemAsComplete(String todoItemName);
 
 }
