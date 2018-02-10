@@ -17,22 +17,26 @@ public class TodoValidationStepsImpl implements ITodoValidationSteps {
 
     @Override
     public void todoItemIsPresent(String todoName) {
-        assertTrue(todoValidationLogic.isItemPresentInAList(todoName));
+        final String errorMessage = String.format("Item with name %s was't found in a list", todoName);
+        assertTrue(errorMessage, todoValidationLogic.isItemPresentInAList(todoName));
     }
 
     @Override
     public void todoItemMarkedCompeted(String todoName) {
-        assertTrue(todoValidationLogic.isTodoItemMarkedCompeted(todoName));
+        final String errorMessage = String.format("Item with name %s is not marked completed", todoName);
+        assertTrue(errorMessage, todoValidationLogic.isTodoItemMarkedCompeted(todoName));
     }
 
     @Override
     public void todoItemIsNotPresent(String todoItemName) {
-        assertFalse(todoValidationLogic.isItemPresentInAList(todoItemName));
+        final String errorMessage = String.format("Item with name %s was found in a list", todoItemName);
+        assertFalse(errorMessage, todoValidationLogic.isItemPresentInAList(todoItemName));
     }
 
     @Override
     public void todoItemIsNotMarkedCompeted(String todoItemName) {
-        assertFalse(todoValidationLogic.isTodoItemMarkedCompeted(todoItemName));
+        final String errorMessage = String.format("Item with name %s is marked completed", todoItemName);
+        assertFalse(errorMessage, todoValidationLogic.isTodoItemMarkedCompeted(todoItemName));
     }
 
     @Override

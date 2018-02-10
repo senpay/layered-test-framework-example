@@ -220,4 +220,21 @@ public class TodoListTest {
         //Then
         todoValidationSteps.userSeesItems(todoItems);
     }
+
+
+    /**
+     * This guys would be actually very good to be a parametrized test.
+     * Same as previous.
+     */
+    @Test
+    public void failingTestForHtmlReportCheck() {
+        //Given
+        final int numberOfItemsCreated = 5;
+        final List<String> todoItems = todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
+
+        //When
+
+        //Then
+        todoValidationSteps.userDoesNotSeeItems(todoItems);
+    }
 }

@@ -25,6 +25,8 @@ public class TodoCompositeStepsImpl implements ITodoCompositeSteps {
     @Override
     public void userCreatedTodoItem(String todoItemName) {
         crudSteps.userEntersTodoName(todoItemName);
+        //Using asume here so exception in step preparation would look
+        //different from typical assertion
         assumeTrue(todoValidationLogic.isItemPresentInAList(todoItemName));
     }
 
