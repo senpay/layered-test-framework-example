@@ -1,0 +1,14 @@
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/service/TodoValidationStepsImpl.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/service/TodoValidationLogic.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/test/ITodoCompositeSteps.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/service/IMainPage.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/service/IApplicationDriver.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/test/ITodoValidationSteps.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/test/IGenericSteps.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/service/TodoCRUDStepsImpl.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/test/ITodoCRUDSteps.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/driver/SelenideApplicationDriver.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/page/SelenideMainPage.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/test/ITodoFilterSteps.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/service/TodoCompositeStepsImpl.java
+/home/senpay/private/layered-test-framework-example/src/main/java/gmail/alexspush/service/GenericStepsImpl.java

@@ -1,12 +1,19 @@
 package gmail.alexspush.test;
 
+import java.util.List;
+
 import gmail.alexspush.service.GenericStepsImpl;
 import gmail.alexspush.service.TodoCRUDStepsImpl;
 import gmail.alexspush.service.TodoCompositeStepsImpl;
+import gmail.alexspush.service.TodoFilterStepsImpl;
 import gmail.alexspush.service.TodoValidationStepsImpl;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+
+import static gmail.alexspush.utils.TestUtils.generateItemName;
+import static gmail.alexspush.utils.TestUtils.getListWithoutSublist;
 
 /**
  * Created by Alexander Pushkarev.
@@ -23,7 +30,7 @@ public class TodoListTest {
     //any other smart way. Here I just will new them.
     private IGenericSteps genericSteps = new GenericStepsImpl();
     private ITodoCRUDSteps todoCRUDSteps = new TodoCRUDStepsImpl();
-    private ITodoFilterSteps todoFilterSteps;
+    private ITodoFilterSteps todoFilterSteps = new TodoFilterStepsImpl();
     private ITodoValidationSteps todoValidationSteps = new TodoValidationStepsImpl();
     private ITodoCompositeSteps todoCompositeSteps = new TodoCompositeStepsImpl();
 
@@ -59,7 +66,7 @@ public class TodoListTest {
         //Not much here - setUp() is almost enough
         //it would be nice to extract this name generation to some
         //getItemName() method, but that is boring thing to do, so I won't do it
-        final String todoItemName = "mySuperNiceAndPrettyRandomName";
+        final String todoItemName = generateItemName();
 
         //When
         todoCRUDSteps.userEntersTodoName(todoItemName);
@@ -91,7 +98,7 @@ public class TodoListTest {
     @Test
     public void shouldBeAbleToMarkTodoItemAsCompleted() {
         //Given
-        final String todoItemName = "mySuperNiceAndExtraRandomName";
+        final String todoItemName = generateItemName();
         //would be nice to reference prev. test here, wouldn't it?
         todoCompositeSteps.userCreatedTodoItem(todoItemName);
 
@@ -113,7 +120,7 @@ public class TodoListTest {
     @Test
     public void shouldBeAbleToUnMarkTodoItemAsCompleted() {
         //Given
-        final String todoItemName = "mySuperNiceAndExtraRandomName";
+        final String todoItemName = generateItemName();
         todoCompositeSteps.userCreatedTodoItem(todoItemName);
         todoCompositeSteps.userCompletedTodoItem(todoItemName);
 
@@ -133,7 +140,7 @@ public class TodoListTest {
     @Test
     public void shouldBeAbleToDeleteTodoItem() {
         //Given
-        final String todoItemName = "mySuperNiceAndUltraRandomName";
+        final String todoItemName = generateItemName();
         todoCompositeSteps.userCreatedTodoItem(todoItemName);
 
         //When
@@ -162,15 +169,16 @@ public class TodoListTest {
         //Given
         final int numberOfItemsCreated = 6;
         final int numberOfItemsCompleted = 4;
-        todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
-        todoCompositeSteps.userCompletedNumberOfItems(numberOfItemsCompleted);
+        final List<String> todoItems = todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
+        final List<String> completedItems = todoCompositeSteps.userCompletedNumberOfItems(todoItems, numberOfItemsCompleted);
+        final List<String> activeItems = getListWithoutSublist(todoItems, completedItems);
 
         //When
         todoFilterSteps.selectsActiveFilter();
 
         //Then
-        todoValidationSteps.userSeesOnlyActiveItems();
-
+        todoValidationSteps.userSeesItems(activeItems);
+        todoValidationSteps.userDoesNotSeeItems(completedItems);
     }
 
     /**
@@ -182,14 +190,16 @@ public class TodoListTest {
         //Given
         final int numberOfItemsCreated = 5;
         final int numberOfItemsCompleted = 2;
-        todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
-        todoCompositeSteps.userCompletedNumberOfItems(numberOfItemsCompleted);
+        final List<String> todoItems = todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
+        final List<String> completedItems = todoCompositeSteps.userCompletedNumberOfItems(todoItems, numberOfItemsCompleted);
+        final List<String> activeItems = getListWithoutSublist(todoItems, completedItems);
 
         //When
         todoFilterSteps.selectsCompletedFilter();
 
         //Then
-        todoValidationSteps.userSeesOnlyCompletedItems();
+        todoValidationSteps.userSeesItems(completedItems);
+        todoValidationSteps.userDoesNotSeeItems(activeItems);
     }
 
     /**
@@ -201,13 +211,13 @@ public class TodoListTest {
         //Given
         final int numberOfItemsCreated = 5;
         final int numberOfItemsCompleted = 2;
-        todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
-        todoCompositeSteps.userCompletedNumberOfItems(numberOfItemsCompleted);
+        final List<String> todoItems = todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
+        todoCompositeSteps.userCompletedNumberOfItems(todoItems, numberOfItemsCompleted);
 
         //When
         todoFilterSteps.selectsAllFilter();
 
         //Then
-        todoValidationSteps.userSeeAllCreatedItems();
+        todoValidationSteps.userSeesItems(todoItems);
     }
 }

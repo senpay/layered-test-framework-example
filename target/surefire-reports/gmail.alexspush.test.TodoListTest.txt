@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: gmail.alexspush.test.TodoListTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 1, Errors: 3, Skipped: 0, Time elapsed: 39.127 s <<< FAILURE! - in gmail.alexspush.test.TodoListTest
+shouldBeAbleToDeleteTodoItem(gmail.alexspush.test.TodoListTest)  Time elapsed: 4.888 s  <<< FAILURE!
+java.lang.AssertionError
+	at gmail.alexspush.test.TodoListTest.shouldBeAbleToDeleteTodoItem(TodoListTest.java:143)
+
+shouldShowOnlyActiveItemsIfActiveFilterApplied(gmail.alexspush.test.TodoListTest)  Time elapsed: 2.761 s  <<< ERROR!
+java.lang.NullPointerException
+	at gmail.alexspush.test.TodoListTest.shouldShowOnlyActiveItemsIfActiveFilterApplied(TodoListTest.java:169)
+
+shouldShowOnlyCompletedItemsIfCompletedFilterApplied(gmail.alexspush.test.TodoListTest)  Time elapsed: 6.787 s  <<< ERROR!
+java.lang.NullPointerException
+	at gmail.alexspush.test.TodoListTest.shouldShowOnlyCompletedItemsIfCompletedFilterApplied(TodoListTest.java:189)
+
+shouldShowAllItemsIfNoFilterApplied(gmail.alexspush.test.TodoListTest)  Time elapsed: 3.956 s  <<< ERROR!
+java.lang.NullPointerException
+	at gmail.alexspush.test.TodoListTest.shouldShowAllItemsIfNoFilterApplied(TodoListTest.java:208)
+

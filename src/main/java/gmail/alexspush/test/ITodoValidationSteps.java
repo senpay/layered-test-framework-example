@@ -1,5 +1,7 @@
 package gmail.alexspush.test;
 
+import java.util.List;
+
 /**
  * Created by Alexander Pushkarev.
  * 6.2.18
@@ -15,10 +17,7 @@ public interface ITodoValidationSteps {
 
     void todoItemIsNotMarkedCompeted(String todoItemName);
 
-    void userSeeAllCreatedItems();
+    void userDoesNotSeeItems(List<String> items);
 
-    void userSeesOnlyActiveItems();
-
-    void userSeesOnlyCompletedItems();
-
+    void userSeesItems(List<String> items);
 }

@@ -36,19 +36,16 @@ public class TodoValidationStepsImpl implements ITodoValidationSteps {
     }
 
     @Override
-    public void userSeeAllCreatedItems() {
-
+    public void userDoesNotSeeItems(List<String> items) {
+        for (String itemName : items) {
+            todoItemIsNotPresent(itemName);
+        }
     }
 
     @Override
-    public void userSeesOnlyActiveItems() {
-
+    public void userSeesItems(List<String> items) {
+        for (String itemName : items) {
+            todoItemIsPresent(itemName);
+        }
     }
-
-    @Override
-    public void userSeesOnlyCompletedItems() {
-
-    }
-
-
 }

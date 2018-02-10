@@ -18,8 +18,12 @@ public class SelenideMainPage implements IMainPage {
 
     public static final SelenideMainPage INSTANCE = new SelenideMainPage();
 
+    //Sometimes it may be a good idea to put such ids into properties or other config file
     private static final By NEW_FIELD_XPATH = By.xpath("//input[@id='new-todo']");
     private static final By TODO_ITEMS_XPATH = By.xpath("//div[@class='view']/label");
+    private static final By COMPLETED_FILTER_LINK_XPATH = By.xpath("//a[text()='Completed']");
+    private static final By ACTIVE_FILTER_LINK_XPATH = By.xpath("//a[text()='Active']");
+    private static final By ALL_FILTER_LINK_XPATH = By.xpath("//a[text()='All']");
 
     //I am not sure those xpathes are correct from the AngularJS point of view
     //Have no idea which of ids/classes are generated
@@ -94,6 +98,21 @@ public class SelenideMainPage implements IMainPage {
         final String checkBoxXpathString  = String.format(CHECKBOX_ITEM_XPATH_TEMPLATE, todoItemName);
         final By checkBoxXpath = By.xpath(checkBoxXpathString);
         return $(checkBoxXpath);
+    }
+
+    @Override
+    public void clickCompletedLink() {
+        $(COMPLETED_FILTER_LINK_XPATH).click();
+    }
+
+    @Override
+    public void clickAllLink() {
+        $(ALL_FILTER_LINK_XPATH).click();
+    }
+
+    @Override
+    public void clickActiveLink() {
+        $(ACTIVE_FILTER_LINK_XPATH).click();
     }
 
     private void hoverOverTodoItem(final String todoItemName) {

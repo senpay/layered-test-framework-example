@@ -1,5 +1,7 @@
 package gmail.alexspush.test;
 
+import java.util.List;
+
 /**
  * Created by Alexander Pushkarev.
  * 6.2.18
@@ -11,8 +13,8 @@ public interface ITodoCompositeSteps {
 
     void userCompletedTodoItem(String todoItemName);
 
-    void userCreatedNumberOfItems(int numberOfItemsCreated);
+    List<String> userCreatedNumberOfItems(int numberOfItemsCreated);
 
-    void userCompletedNumberOfItems(int numberOfItemsCompleted);
+    List<String> userCompletedNumberOfItems(List<String> todoItems, int numberOfItemsCompleted);
 
 }

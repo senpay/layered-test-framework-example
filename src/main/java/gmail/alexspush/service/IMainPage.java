@@ -20,4 +20,10 @@ public interface IMainPage {
     void unSelectCheckBoxForItem(String todoItemName);
 
     void clickDeleteButtonForItem(String todoItemName);
+
+    void clickCompletedLink();
+
+    void clickAllLink();
+
+    void clickActiveLink();
 }

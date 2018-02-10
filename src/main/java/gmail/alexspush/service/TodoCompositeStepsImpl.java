@@ -1,9 +1,12 @@
 package gmail.alexspush.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gmail.alexspush.test.ITodoCRUDSteps;
 import gmail.alexspush.test.ITodoCompositeSteps;
-import gmail.alexspush.test.ITodoValidationSteps;
 
+import static gmail.alexspush.utils.TestUtils.generateItemName;
 import static org.junit.Assume.assumeTrue;
 
 /**
@@ -32,12 +35,22 @@ public class TodoCompositeStepsImpl implements ITodoCompositeSteps {
     }
 
     @Override
-    public void userCreatedNumberOfItems(int numberOfItemsCreated) {
-
+    public List<String> userCreatedNumberOfItems(int numberOfItemsCreated) {
+        final List<String> todoItemNames = new ArrayList<>();
+        for (int i = 0; i < numberOfItemsCreated; i++) {
+            final String todoItemName = generateItemName();
+            userCreatedTodoItem(todoItemName);
+            todoItemNames.add(todoItemName);
+        }
+        return todoItemNames;
     }
 
     @Override
-    public void userCompletedNumberOfItems(int numberOfItemsCompleted) {
-
+    public List<String> userCompletedNumberOfItems(List<String> todoItems, int numberOfItemsCompleted) {
+        List<String> todoItemsToBeCompleted = todoItems.subList(0, numberOfItemsCompleted);
+        for (String todoItem : todoItemsToBeCompleted) {
+            userCompletedTodoItem(todoItem);
+        }
+        return todoItemsToBeCompleted;
     }
 }
