@@ -30,3 +30,8 @@ Area: Other
 9 Valid item list shown (Nothing special. May be combined nicely with some other scenario. Pretty minor thing anyway so I would rather not
 add a separate UI case for that)
 
+To start:
+You will need Apache Maven installed. From the command line execute: mvn site
+Html report can be found under {path to the project root}//target/site/surefire-report.html
+
+
